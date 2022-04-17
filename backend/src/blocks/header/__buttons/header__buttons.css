@@ -1,8 +1,0 @@
-.header__buttons {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: flex-start;
-    margin: 10px 0 0 0;
-    padding: 0;
-}
