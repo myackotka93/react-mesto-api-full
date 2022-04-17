@@ -1,0 +1,22 @@
+.header__link {
+  width: 103.74px;
+  height: 24.4px;
+  margin: 0 auto 31.6px 27px;
+  padding: 0;
+  opacity: 1;
+  border: none;
+  transition: opacity .4s ease-out;     
+}
+
+.header__link:hover {
+  opacity: 0.5;
+}
+
+@media screen and (min-width: 955px) {
+  .header__link {
+    margin: 0 0 41px 0;
+    width: 142px;
+    height: 33px;
+  }
+}
+  

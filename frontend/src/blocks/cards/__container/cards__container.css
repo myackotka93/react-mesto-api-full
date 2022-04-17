@@ -1,0 +1,29 @@
+.cards__container {
+  display: grid;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(2, max-content);
+  row-gap: 20px;
+  column-gap: 17px;
+  list-style: none;
+}
+
+@media screen and (min-width: 955px) {
+  .cards__container {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, max-content);
+      margin: 0 auto;
+  }
+}
+  
+@media screen and (min-width: 1280px) {
+  .cards__container {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, max-content);
+      margin: 0 auto;
+  }
+}
+  
+

@@ -1,0 +1,11 @@
+.header__button_logout {
+    text-decoration: none;
+    margin: 0 0 0 24px;
+    opacity: 1;
+    transition: opacity 0.5s ease-out;
+  }
+  
+  .header__button_logout:hover {
+    cursor: pointer;
+    opacity: 0.6;
+  }
