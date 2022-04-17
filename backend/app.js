@@ -40,6 +40,12 @@ app.use(() => {
 
 app.use(errorLogger);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(errors());
 
 app.use((err, req, res, next) => {

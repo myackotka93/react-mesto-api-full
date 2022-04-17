@@ -1,7 +1,6 @@
 export class Api {
-  constructor({ baseUrl, headers }) {
-    this._baseUrl = baseUrl;
-    this._headers = headers;
+  constructor(url) {
+    this._url = url;
   }
 
   _checkResponse(res) {
@@ -12,7 +11,7 @@ export class Api {
   }
 
   saveProfile(name, about) {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -24,14 +23,15 @@ export class Api {
   }
 
   getProfile() {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
+      method: 'GET',
       headers: this._headers
     })
       .then(this._checkResponse)
   }
 
   saveProfileAvatar(url) {
-    return fetch(`${this._baseUrl}/users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify({
@@ -42,7 +42,7 @@ export class Api {
   }
 
   createCard(name, link) {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
       headers: this._headers,
       body: JSON.stringify({
@@ -54,7 +54,7 @@ export class Api {
   }
 
   deleteCard(cardId) {
-    return fetch(`${this._baseUrl}/cards/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
       headers: this._headers,
     })
@@ -62,14 +62,15 @@ export class Api {
   }
 
   getInitialCards() {
-    return fetch(`${this._baseUrl}/cards`, {
+    return fetch(`${this._url}/cards`, {
+      method: 'GET',
       headers: this._headers
     })
       .then(this._checkResponse)
   }
 
   putLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
       headers: this._headers,
     })
@@ -77,7 +78,7 @@ export class Api {
   }
 
   takeLike(cardId) {
-    return fetch(`${this._baseUrl}/cards/likes/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
       headers: this._headers,
     })
@@ -90,9 +91,9 @@ export class Api {
 }
 
 export const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-31',
+  url: 'https://mesto.nomoreparties.co/v1/cohort-31',
   headers: {
-    authorization: 'ed4e709f-de7c-46ba-abac-34b77cb68884',
+    authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
   }
 });

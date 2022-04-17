@@ -12,7 +12,7 @@ module.exports.getUsers = (req, res, next) => {
   User.find({})
     .then((data) => res
       .status(200)
-      .send({ data }))
+      .send(data))
     .catch(next);
 };
 
@@ -65,7 +65,7 @@ module.exports.createUser = (req, res, next) => {
     }))
     .then((user) => res
       .status(200)
-      .send({ data: { _id: user._id, email: user.email } }))
+      .send({_id: user._id, email: user.email }))
     .catch((err) => {
       if (err.name === 'ValidationError' || err.name === 'CastError') {
         next(new BadRequestError('Пароль или почта некорректны'));
