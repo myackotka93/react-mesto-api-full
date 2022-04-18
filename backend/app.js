@@ -22,7 +22,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 app.disable('x-powered-by');
-
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
 app.use(requestLogger);
@@ -53,6 +52,7 @@ app.use((err, req, res, next) => {
   res.status(statusCode).send({ message: statusCode === 500 ? 'Что-то пошло не так' : message });
   next();
 });
+
 
 app.listen(PORT, () => {
   // eslint-disable-next-line no-console

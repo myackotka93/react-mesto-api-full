@@ -1,6 +1,7 @@
 export class Api {
-  constructor(url) {
+  constructor({ url, headers }) {
     this._url = url;
+    this._headers = headers;
   }
 
   _checkResponse(res) {
@@ -85,13 +86,13 @@ export class Api {
       .then(this._checkResponse)
   }
 
-  changeLikeCardStatus(cardId,toggle) {
+  changeLikeCardStatus(cardId, toggle) {
     return toggle ? this.putLike(cardId) : this.takeLike(cardId);
-}
+  }
 }
 
 export const api = new Api({
-  url: 'https://api.domainname.myackotka.nomoredomains.xyz',
+  url: process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.domainname.myackotka.nomoredomains.xyz',
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'

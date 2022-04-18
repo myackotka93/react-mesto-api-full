@@ -12,29 +12,29 @@ class Auth {
 
   signin(password, email) {
     return fetch(`${this._url}/signin`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          "password": password,
-          "email": email
-        })
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        "password": password,
+        "email": email
       })
+    })
       .then(res => this._checkResponse(res))
   }
 
   signup(password, email) {
     return fetch(`${this._url}/signup`, {
-        method: 'POST',
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-          "password": password,
-          "email": email
-        })
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        "password": password,
+        "email": email
       })
+    })
       .then(res => this._checkResponse(res))
   };
 
@@ -42,16 +42,16 @@ class Auth {
 
   getContent(token) {
     return fetch(`${this._url}/users/me`, {
-        method: 'GET',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        }
-      })
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      }
+    })
       .then(res => this._checkResponse(res))
   }
 }
 
-const auth = new Auth('https://api.domainname.myackotka.nomoredomains.xyz');
+const auth = new Auth(process.env.NODE_ENV === 'development' ? 'http://localhost:3001' : 'https://api.domainname.myackotka.nomoredomains.xyz');
 
 export default auth;
