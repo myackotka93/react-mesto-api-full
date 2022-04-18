@@ -52,5 +52,6 @@ class Auth {
   }
 }
 
-const auth = new Auth('https://auth.nomoreparties.co');
+const auth = new Auth('https://api.domainname.myackotka.nomoredomains.xyz');
+
 export default auth;

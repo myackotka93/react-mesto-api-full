@@ -91,7 +91,7 @@ export class Api {
 }
 
 export const api = new Api({
-  url: 'https://mesto.nomoreparties.co/v1/cohort-31',
+  url: 'https://api.domainname.myackotka.nomoredomains.xyz',
   headers: {
     authorization: `Bearer ${localStorage.getItem('jwt')}`,
     'Content-Type': 'application/json'
