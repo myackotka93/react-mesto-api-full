@@ -175,9 +175,15 @@ const App = () => {
           if (userInfo) {
             setCurrentUser(userInfo);
             // setUserEmail(userInfo.email);
+          } 
             setLoggedIn(true);
             history.push("/");
-          }
+            api.getInitialCards()
+            .then((data) => {
+                console.log(data);
+                setCards([...data.data]);
+            })
+            .catch((err) => {console.log(err)});
         })
         .catch((err) => {
           localStorage.removeItem('jwt');
@@ -201,28 +207,14 @@ const App = () => {
   }, []);
 
   // useEffect(() => {
-  //   handleUserData();
-  // }, [])
-
-  useEffect(() => {
-    api.getInitialCards()
-      .then((data) => {
-        setCards([...data]);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-
-  // const handleUserData = () => {
-  //   api.getProfile()
+  //   api.getInitialCards()
   //     .then((data) => {
-  //       setCurrentUser(data);
+  //       setCards([...data]);
   //     })
   //     .catch((err) => {
-  //       console.log(`ошибка ${err}`);
-  //     })
-  // }
+  //       console.log(err);
+  //     });
+  // }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
