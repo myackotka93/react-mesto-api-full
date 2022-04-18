@@ -167,6 +167,16 @@ const App = () => {
     history.push('/sign-in');
   }
 
+  useEffect(() => {
+    api.getInitialCards()
+      .then((data) => {
+        setCards([...data]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const tokenCheck = () => {
     if (localStorage.getItem('jwt')) {
       const jwt = localStorage.getItem('jwt');
@@ -175,15 +185,9 @@ const App = () => {
           if (userInfo) {
             setCurrentUser(userInfo);
             // setUserEmail(userInfo.email);
-          } 
             setLoggedIn(true);
             history.push("/");
-            api.getInitialCards()
-            .then((data) => {
-                console.log(data);
-                setCards([...data.data]);
-            })
-            .catch((err) => {console.log(err)});
+          }
         })
         .catch((err) => {
           localStorage.removeItem('jwt');
@@ -202,19 +206,9 @@ const App = () => {
   }
 
   useEffect(() => {
-    console.log('test')
     tokenCheck();
   }, []);
 
-  // useEffect(() => {
-  //   api.getInitialCards()
-  //     .then((data) => {
-  //       setCards([...data]);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
