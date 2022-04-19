@@ -5,12 +5,24 @@ const NotFoundError = require('../errors/not-found-err');
 
 
 module.exports.getCards = (req, res, next) => {
-  Card.find({})
+  Card.find({}).sort({createdAt: -1})
     .then((data) => res
       .status(200)
       .send(data))
     .catch(next);
 };
+
+
+// module.exports.getCards = async (req, res) => {
+//   const cards = await Card.find({});
+//   res.json(cards);
+
+//   // Card.find({})
+//   //   .then((data) => res
+//   //     .status(200)
+//   //     .send(data))
+//   //   .catch(next);
+// };
 
 module.exports.createCard = (req, res, next) => {
   const { name, link } = req.body;

@@ -29,6 +29,12 @@ app.use(requestLogger);
 app.post('/signup', signupValidation, createUser);
 app.post('/signin', signinValidation, login);
 
+app.get('/crash-test', () => {
+  setTimeout(() => {
+    throw new Error('Сервер сейчас упадёт');
+  }, 0);
+});
+
 app.use(auth);
 app.use('/users', require('./routes/users'));
 app.use('/cards', require('./routes/cards'));
@@ -39,11 +45,6 @@ app.use(() => {
 
 app.use(errorLogger);
 
-app.get('/crash-test', () => {
-  setTimeout(() => {
-    throw new Error('Сервер сейчас упадёт');
-  }, 0);
-});
 
 app.use(errors());
 

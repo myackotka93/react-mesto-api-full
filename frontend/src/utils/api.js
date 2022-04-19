@@ -4,6 +4,10 @@ export class Api {
     this._headers = headers;
   }
 
+  refreshToken() {
+    this._headers.authorization = `Bearer ${localStorage.getItem('jwt')}`;
+  }
+
   _checkResponse(res) {
     if (res.ok) {
       return res.json();
